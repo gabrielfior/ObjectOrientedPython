@@ -1,3 +1,5 @@
+import sys
+
 from hw_chapter2.notebook import Notebook
 
 
@@ -7,11 +9,11 @@ class Menu:
     def __init__(self):
         self.notebook = Notebook()
         self.choices = {
-            "1" : self.show_notes,
-            "1": self.search_notes,
-            "1": self.add_note,
-            "1": self.modify_note,
-            "1": self.quit
+            "1": self.show_notes,
+            "2": self.search_notes,
+            "3": self.add_note,
+            "4": self.modify_note,
+            "5": self.quit
         }
 
     def display_menu(self):
@@ -40,9 +42,35 @@ class Menu:
         if not notes:
             notes = self.notebook.notes
 
+        if notes == []:
+            print("No notes to be displayed.")
+
         for note in notes:
             print("{0}: {1}\n{2}".format(
                 note.id, note.tags, note.memo
             ))
 
-    # Missing implementation of other methods (pg. 55)
+    def search_notes(self):
+        filter = input("Search for: ")
+        notes = self.notebook.search(filter)
+        self.show_notes(notes)
+
+    def add_note(self):
+        memo = input("Enter a memo: ")
+        self.notebook.new_note(memo)
+
+    def modify_note(self):
+        id = input("Enter a note ID: ")
+        memo = input("Enter a memo: ")
+        tags = input("Enter tags: ")
+        if memo:
+            self.notebook.modify_memo(id, memo)
+        if tags:
+            self.notebook.modify_tags(id, tags)
+
+    def quit(self):
+        print("Thanks for using Notebook Inc. services today!")
+        sys.exit(0)
+
+if __name__ == "__main__":
+    Menu().run()

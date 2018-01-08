@@ -47,13 +47,23 @@ class Notebook:
         :return: note with ID corresponding to note_id
         '''
         for note in self.notes:
-            if note.id == note_id:
+            if str(note.id) == str(note_id):
                 return note
             return None
 
     def modify_memo(self, note_id, memo):
-        '''Finds the note with the given ID and change its memo to the given value'''
-        self._find_note(note_id).memo = memo
+        '''
+        Finds the note with the given ID and change its memo to the given value
+        :param note_id: ID of note to be modified
+        :param memo: Memo to be stored
+        :return: Boolean indicating success or failure of update
+        '''''
+        note = self._find_note(note_id)
+        if note:
+            note.memo = memo
+            return True
+
+        return False
 
     def modify_tags(self, note_id, tags):
         '''
