@@ -1,5 +1,5 @@
-from chapter_case_study.Property import Property
-from chapter_case_study.helper_functions import get_valid_input_string
+from chapter3_case_study.Property import Property
+from chapter3_case_study.helper_functions import get_valid_input
 
 
 class Appartment(Property):
@@ -9,7 +9,7 @@ class Appartment(Property):
 
     def __init__(self, balcony = '', laundry = '', **kwargs):
         super().__init__(**kwargs)
-        self.balcony - balcony
+        self.balcony = balcony
         self.laundry = laundry
 
     def display(self):
@@ -21,8 +21,8 @@ class Appartment(Property):
 
     def prompt_init():
         parent_init = Property.prompt_init()
-        laundry = get_valid_input_string("What laundry facilities does the property have? ", Appartment.valid_laundries)
-        balcony = get_valid_input_string("Does the property have a balcony? ", Appartment.valid_balconies)
+        laundry = get_valid_input("What laundry facilities does the property have? ", Appartment.valid_laundries)
+        balcony = get_valid_input("Does the property have a balcony? ", Appartment.valid_balconies)
 
         parent_init.update({
             "laundry" : laundry,

@@ -2,7 +2,7 @@
 Helper static functions for other classes
 """
 
-def get_valid_input_string(input_string, valid_options):
+def get_valid_input(input_string, valid_options):
     """
     Validates input of the user, so that it enters one of the required answers, or is prompted again.
     :param input_string:
